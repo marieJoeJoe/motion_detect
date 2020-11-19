@@ -1,10 +1,21 @@
 #ifndef __LIBMD_H__
 #define __LIBMD_H__
 #include <math.h>
+#include <stdio.h>
 
-#define SAMPLES_NUM 30//242
+#ifdef MD_DEBUG
+#define mdetect_print(x,arg...) printf("[%s]"x,__FUNCTION__,##arg)
+#define mdetect_err(x,arg...) printf("[%s]"x,__FUNCTION__,##arg)
+#else
+#define mdetect_print(x,arg...)
+#define mdetect_err(x,arg...)
+#endif
 
-#define AMP_DIFF_THRES 3.1415926
+
+#define SAMPLES_NUM 242
+//242
+
+#define AMP_DIFF_THRES 176.14159
 
 #define INTERVAL 100 //ms
 
@@ -12,16 +23,16 @@ extern int I_VAL0[SAMPLES_NUM];
 extern int Q_VAL0[SAMPLES_NUM];
 extern int I_VAL[SAMPLES_NUM];
 extern int Q_VAL[SAMPLES_NUM];
-extern double AMP_N[SAMPLES_NUM];
-extern double AMP_P[SAMPLES_NUM];
-extern double AMP_DIFF[SAMPLES_NUM];
+extern float AMP_N[SAMPLES_NUM];
+extern float AMP_P[SAMPLES_NUM];
+extern float AMP_DIFF[SAMPLES_NUM];
 
 
 
-void amp_array_calcu(int *i_array , int *q_array, double *amp);
+void amp_array_calcu(int *i_array , int *q_array, float *amp);
 
-void amp_difference_array_calcu(double* amp_n,double* amp_p,double* amp_diff);
+void amp_difference_array_calcu(float* amp_n, float* amp_p, float* amp_diff);
 
-int get_ampdiff_maximum_index(double *amp_diff, double thres ,int * index);
+int get_ampdiff_maximum_index(float *amp_diff, float thres ,int * max_index, int * start_index);
 
 #endif
