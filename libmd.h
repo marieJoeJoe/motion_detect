@@ -19,6 +19,9 @@
 
 #define INTERVAL 100 //ms
 
+#define INTERVAL
+
+
 extern int I_VAL0[SAMPLES_NUM];
 extern int Q_VAL0[SAMPLES_NUM];
 extern int I_VAL[SAMPLES_NUM];
