@@ -75,6 +75,14 @@ void linear_(){
 
 }
 
+typedef struct {
+	int	maxFit;			/* max order of saved fit */
+	double	*matrix;		/* fitting matrix */
+}	FitData, *FitDataPtr;
+
+static	FitDataPtr	pFitData;
+
+
 int				/* <- 0=ok, -1=error */
 PolynomialFit(opcode, maxfit, order, fit, weights, r2, nPts, x, y)
 	int	opcode;		/* -> operation to be performed:
