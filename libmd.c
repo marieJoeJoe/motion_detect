@@ -75,35 +75,31 @@ void linear_(){
 
 }
 
-typedef struct {
-	int	maxFit;			/* max order of saved fit */
-	double	*matrix;		/* fitting matrix */
-}	FitData, *FitDataPtr;
 
 static	FitDataPtr	pFitData;
 
 
-int				/* <- 0=ok, -1=error */
-PolynomialFit(opcode, maxfit, order, fit, weights, r2, nPts, x, y)
-	int	opcode;		/* -> operation to be performed:
+/*
+  input param
+  int operation to be performed:
 				      0 = load data points (x,y)
 				      1 = calculate polynomial fit
 				      2 = calculate coefficients 
 				      3 = calculate y for given x
-				      4 = free the fit matrix */
-	int	maxfit;		/* -> maximum order to fit */
-	int	order;		/* -> requested order of fit */
-	double	*fit;		/* <- array of polynomial coefficients
-				      >>MUST<< be dimensioned maxfit+2 */
-	double	*weights;	/* -> coordinate weight multipliers
-				      (1.0=no weight) */
-	double	*r2;		/* <- correlation coefficient of points
-				      to the fit (r^2) */
-	int	nPts;		/* -> number of points in weights, x, & y */
-	double	*x;		/* -> x values to be loaded (opcode=0)
-				      or calculated (opcode=3) */
-	double	*y;		/* <> y values to be loaded (opcode=0)
-				      or calculated (opcode=3) */
+				      4 = free the fit matrix
+	int	maxfit  maximum order to fit
+	int	order   requested order of fit
+	double	*fit  array of polynomial coefficients >>MUST<< be dimensioned maxfit+2
+	double	*weights coordinate weight multipliers (1.0=no weight)
+	double	*r2  correlation coefficient of points to the fit (r^2)
+	int	nPts number of points in weights, x, & y
+	double	*x  x values to be loaded (opcode=0) or calculated (opcode=3)
+	double	*y  y values to be loaded (opcode=0) or calculated (opcode=3)
+  return int 0=ok, -1=error
+*/
+//int polynomialFit(int opcode,int  maxfit,int  order,double *fit,double * weights, double *r2,int nPts,double *x, double *y)
+
+int polynomialFit(int opcode,int  maxfit,int  order,float *fit, float * weights, float *r2,int nPts,float *x, float *y)
 {
 /*
 **       PolynomialFit() performs four different functions,

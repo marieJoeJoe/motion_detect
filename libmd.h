@@ -2,6 +2,7 @@
 #define __LIBMD_H__
 #include <math.h>
 #include <stdio.h>
+#include <stdlib.h>
 
 #ifdef MD_DEBUG
 #define mdetect_print(x,arg...) printf("[%s]"x,__FUNCTION__,##arg)
@@ -19,7 +20,7 @@
 
 #define INTERVAL 100 //ms
 
-#define INTERVAL
+#define FITTING_INTERVAL 100
 
 
 extern int I_VAL0[SAMPLES_NUM];
@@ -31,6 +32,14 @@ extern float AMP_P[SAMPLES_NUM];
 extern float AMP_DIFF[SAMPLES_NUM];
 
 
+
+typedef struct {
+	int	maxFit;			/* max order of saved fit */
+	double	*matrix;		/* fitting matrix */
+}	FitData, *FitDataPtr;
+
+//int polynomialFit(int opcode,int  maxfit,int  order,double *fit,double * weights, double *r2,int nPts,double *x, double *y);
+int polynomialFit(int opcode,int  maxfit,int  order,float *fit, float * weights, float *r2,int nPts,float *x, float *y);
 
 void amp_array_calcu(int *i_array , int *q_array, float *amp);
 
